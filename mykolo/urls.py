@@ -17,12 +17,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from productApp.views import homeView, aboutView
+from productApp.views import homeView, aboutView, productView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", homeView, name="home"),
-    path("about/", aboutView, name="about")
+    path("about/", aboutView, name="about"),
+    path("products/", productView, name="products")
 ]
 
 # MVT -: Model, View, Template  

@@ -1,0 +1,23 @@
+{% extends "common.html" %}
+    {% block content %}
+
+    <h1>Product Page</h1>
+    {% if products %}
+        {% for product in products %}
+            <img src="{{product.image}}" alt="" height=100>
+            <p class="p-tag">{{product.title|upper}}</p>
+        
+        {% endfor %}
+
+    {% else %}
+        <h3>No Product Available</h3>
+        
+    {% endif %}
+
+    {% endblock content %}
+
+
+
+
+
+

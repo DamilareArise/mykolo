@@ -1,0 +1,34 @@
+{% extends "common.html" %}
+    {% block content %}
+    {% load static %}
+    <div class="container">
+        <div class="col-11 col-md-8 my-4 m-auto">
+            <a href="" class="text-decoration-none">
+            <div class="card border-0 rounded-0 ">
+                {% if product.thumbnail %}
+                    <img src="{{product.thumbnail.url}}" alt="" class="card-img-top">
+                {% endif %}
+                <div class="card-body">
+                    
+                    <h3 class="card-title">{{product.title}}</h3>
+                    <p class="card-text">{{product.description}}</p>
+                    <p class="card-text d-flex justify-content-between fw-medium">
+                        <span>&#8358;{{product.price}}</span>
+                        <span>{{product.quantity}}left</span>
+                    </p>
+                </div>
+            </div>
+            </a>
+
+            <div>
+                <h4>Specifications</h4>
+                <ul>
+                {% for spec in product.specs.all %}
+                    <li>{{spec.field_name}}: {{spec.field_value}}</li>
+                {% endfor %}
+                </ul> 
+            </div>
+        </div>
+    </div>
+    
+    {% endblock content %}

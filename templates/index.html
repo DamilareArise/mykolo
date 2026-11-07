@@ -1,8 +1,40 @@
 {% extends "common.html" %}
     {% block content %}
     {% load static %}
-        <h1>Welcome back, {{username}}</h1>
-        <img src="{% static "images/wall1.jpg" %}" alt="" height="200">
+    <div class="container">
+        <h3>Welcome back, {{username}}</h3>
+        
+        <h1 class="text-center fs-4 my-4">Featured Products</h1>
+            {% if products %}
+                <div class="row">
+                    {% for product in products %}
+                    <div class="col-11 col-md-4">
+                        <a href="{% url "single-product" product.id %}" class="text-decoration-none">
+                        <div class="card">
+                            {% if product.thumbnail %}
+                                <img src="{{product.thumbnail.url}}" alt="" class="card-img-top">
+                            {% endif %}
+                            <div class="card-body">
+                                
+                                <h3 class="card-title">{{product.title}}</h3>
+                                <p class="card-text">{{product.description|truncatewords:10}}</p>
+                                <p class="card-text d-flex justify-content-between fw-medium">
+                                    <span>&#8358;{{product.price}}</span>
+                                    <span>{{product.quantity}}left</span>
+                                </p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+                <h3>No Product Available</h3>
+                
+            {% endif %}
+     </div>
     
     {% endblock content %}
 

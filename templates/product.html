@@ -1,17 +1,42 @@
 {% extends "common.html" %}
     {% block content %}
 
-    <h1>Product Page</h1>
-    {% if products %}
-        {% for product in products %}
-            <img src="{{product.image}}" alt="" height=100>
-            <p class="p-tag">{{product.title|upper}}</p>
-        
-        {% endfor %}
+    <div class="container">
+    <h1 class="text-center fs-4 my-4">Products</h1>
+        <a href="" class="btn btn-dark my-2">Add Product</a>
+        {% if products %}
+            <div class="row">
+                {% for product in products %}
 
-    {% else %}
-        <h3>No Product Available</h3>
+                <div class="col-11 col-md-4">
+                    <a href="{% url "single-product" product.id %}" class="text-decoration-none">
+                    <div class="card">
+                        {% if product.thumbnail %}
+                            <img src="{{product.thumbnail.url}}" alt="" class="card-img-top">
+                        {% endif %}
+                        <div class="card-body">
+                            
+                            <h3 class="card-title">{{product.title}}</h3>
+                            <p class="card-text">{{product.description|truncatewords:10}}</p>
+                            <p class="card-text d-flex justify-content-between fw-medium">
+                                <span>&#8358;{{product.price}}</span>
+                                <span>{{product.quantity}}left</span>
+                            </p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+    
+                {% endfor %}
+
+            </div>
         
-    {% endif %}
+
+
+        {% else %}
+            <h3>No Product Available</h3>
+            
+        {% endif %}
+     </div>
 
     {% endblock content %}

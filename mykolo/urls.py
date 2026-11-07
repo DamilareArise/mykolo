@@ -17,14 +17,19 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from productApp.views import homeView, aboutView, productView
+from productApp.views import homeView, aboutView, productView, singleProduct
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", homeView, name="home"),
     path("about/", aboutView, name="about"),
-    path("products/", productView, name="products")
+    path("products/", productView, name="products"),
+    path("single-product/<int:id>/",singleProduct, name="single-product")
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # MVT -: Model, View, Template  
 # MVC -: Model, View, Controller
